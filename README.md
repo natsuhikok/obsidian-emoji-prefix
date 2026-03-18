@@ -44,4 +44,3 @@ src/
 npm run lint      # ESLint
 npm run format    # Prettier
 ```
-

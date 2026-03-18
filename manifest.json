@@ -1,9 +1,9 @@
 {
-	"id": "obsidian-plugin-dev",
-	"name": "My Plugin",
+	"id": "obsidian-emoji-prefix",
+	"name": "Emoji Prefix",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Obsidian community plugin boilerplate.",
+	"description": "Add an emoji prefix to note titles from a button in the note header.",
 	"author": "natsuhiko",
-	"isDesktopOnly": false
+	"isDesktopOnly": true
 }
