@@ -1,25 +1,21 @@
 import { moment } from 'obsidian';
 
 interface PluginStrings {
-	// TODO: rename / delete this sample — replace with your own keys
-	sampleCommandName: string;
-	sampleCommandNotice: string;
-	sampleSettingName: string;
-	sampleSettingDesc: string;
+	setEmojiTitle: string;
+	removeEmojiItem: string;
+	noEmojisFound: string;
 }
 
 const en: PluginStrings = {
-	sampleCommandName: 'Sample command',
-	sampleCommandNotice: 'Sample command executed!',
-	sampleSettingName: 'Sample setting',
-	sampleSettingDesc: 'A sample text setting.',
+	setEmojiTitle: 'Set emoji prefix',
+	removeEmojiItem: 'Remove emoji prefix',
+	noEmojisFound: 'No emojis used in vault yet',
 };
 
 const ja: PluginStrings = {
-	sampleCommandName: 'サンプルコマンド',
-	sampleCommandNotice: 'サンプルコマンドを実行しました',
-	sampleSettingName: 'サンプル設定',
-	sampleSettingDesc: 'サンプルのテキスト設定です。',
+	setEmojiTitle: '先頭絵文字を設定',
+	removeEmojiItem: '先頭絵文字を削除',
+	noEmojisFound: 'Vault 内に絵文字がまだ使われていません',
 };
 
 export function t<K extends keyof PluginStrings>(key: K): PluginStrings[K] {

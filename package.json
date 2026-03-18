@@ -8,6 +8,7 @@
 		"dev": "node esbuild.config.mjs",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
 		"lint": "eslint .",
+		"type": "tsc --noEmit",
 		"format": "prettier --write .",
 		"format:check": "prettier --check ."
 	},
