@@ -1,46 +1,17 @@
-# obsidian-plugin-dev
+# Emoji Prefix
 
-Boilerplate for building an [Obsidian](https://obsidian.md) community plugin with TypeScript.
+An [Obsidian](https://obsidian.md) plugin that lets you add an emoji prefix to note titles directly from the note header.
 
-Includes: i18n (en/ja), a settings tab, and a sample command — all thin and meant to be renamed or deleted.
+## How it works
 
-## Quick start
+A button appears in the header of every markdown note. Clicking it opens a menu listing all emojis already used as prefixes elsewhere in your vault. Select one to rename the current note with that emoji at the front of the title. If the note already has an emoji prefix, a **Remove emoji prefix** option is also shown.
 
-```bash
-npm install
-npm run dev   # watch mode
-# or
-npm run build # production build
-```
+The file is renamed in place — no manual renaming needed.
 
-Copy `main.js` and `manifest.json` to `<Vault>/.obsidian/plugins/<your-plugin-id>/`, reload Obsidian, and enable the plugin under **Settings → Community plugins**.
+## Usage
 
-## File structure
+1. Open any note.
+2. Click the emoji button (😊) in the note header.
+3. Choose an emoji from the menu to set it as the title prefix, or choose **Remove emoji prefix** to clear it.
 
-```
-src/
-  main.ts       — Plugin entry point. MyPlugin class.
-  settings.ts   — MyPluginSettings, DEFAULT_SETTINGS, SampleSettingTab.
-  i18n.ts       — Localization. All user-facing strings go through t().
-```
-
-## Customization
-
-**Rename the plugin**
-
-1. Update `id`, `name`, `description` in `manifest.json`.
-2. Update `name` in `package.json`.
-3. Rename `MyPlugin`, `MyPluginSettings`, `SampleSettingTab` in `src/`.
-
-**Add a command** — see `.github/copilot-instructions.md`.
-
-**Add a setting** — see `.github/copilot-instructions.md`.
-
-**Add styles** — create `styles.css` in the root; Obsidian loads it automatically.
-
-## Development
-
-```bash
-npm run lint      # ESLint
-npm run format    # Prettier
-```
+> **Note:** This plugin is desktop only.
