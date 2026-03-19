@@ -8,6 +8,14 @@ A button appears in the header of every markdown note. Clicking it opens a menu 
 
 The file is renamed in place — no manual renaming needed.
 
+Emojis in the menu are sorted by the most recently modified file that uses them (newest first).
+
+## Settings
+
+| Setting              | Description                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| **Excluded folders** | Folders whose files are ignored when collecting vault emojis. Subfolders are also excluded. |
+
 ## Usage
 
 1. Open any note.
