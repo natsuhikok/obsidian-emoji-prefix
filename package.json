@@ -1,8 +1,7 @@
 {
-	"name": "obsidian-plugin-dev",
+	"name": "obsidian-emoji-prefix",
 	"version": "1.0.0",
-	"description": "Obsidian community plugin boilerplate with i18n and settings.",
-	"main": "main.js",
+	"description": "An Obsidian plugin to add, change, or remove a leading emoji in note titles directly from the note header.",
 	"type": "module",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
