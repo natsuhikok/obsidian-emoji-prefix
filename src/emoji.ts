@@ -26,12 +26,25 @@ export function setLeadingEmoji(title: string, emoji: string): string {
 	return `${emoji} ${body}`;
 }
 
-export function collectVaultEmojis(files: TFile[], exclude?: TFile): string[] {
-	const seen = new Set<string>();
+export function collectVaultEmojis(
+	files: TFile[],
+	options?: { exclude?: TFile; excludedFolders?: string[] },
+): string[] {
+	const { exclude, excludedFolders = [] } = options ?? {};
+	const mtimeByEmoji = new Map<string, number>();
 	for (const file of files) {
 		if (exclude && file.path === exclude.path) continue;
+		if (
+			excludedFolders.some(
+				(folder) => file.path === folder || file.path.startsWith(folder + '/'),
+			)
+		)
+			continue;
 		const emoji = getLeadingEmoji(file.basename);
-		if (emoji) seen.add(emoji);
+		if (emoji) {
+			const prev = mtimeByEmoji.get(emoji) ?? 0;
+			mtimeByEmoji.set(emoji, Math.max(prev, file.stat.mtime));
+		}
 	}
-	return [...seen];
+	return [...mtimeByEmoji.entries()].sort((a, b) => b[1] - a[1]).map(([emoji]) => emoji);
 }
