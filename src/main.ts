@@ -1,4 +1,4 @@
-import { MarkdownView, Menu, Plugin, PluginSettingTab, Setting, TFile, setIcon } from 'obsidian';
+import { FileView, Menu, Plugin, PluginSettingTab, Setting, TFile, setIcon } from 'obsidian';
 import { t } from './i18n';
 import { collectVaultEmojis, getLeadingEmoji, removeLeadingEmoji, setLeadingEmoji } from './emoji';
 
@@ -12,7 +12,7 @@ const DEFAULT_SETTINGS: EmojiPrefixSettings = {
 
 export default class EmojiPrefixPlugin extends Plugin {
 	settings: EmojiPrefixSettings = DEFAULT_SETTINGS;
-	private buttonMap = new WeakMap<MarkdownView, HTMLElement>();
+	private buttonMap = new WeakMap<FileView, HTMLElement>();
 
 	async onload() {
 		this.settings = Object.assign(
@@ -32,15 +32,12 @@ export default class EmojiPrefixPlugin extends Plugin {
 	onunload() {}
 
 	private decorateAllViews() {
-		this.app.workspace.getLeavesOfType('markdown').forEach((leaf) => {
-			const view = leaf.view;
-			if (view instanceof MarkdownView) {
-				this.decorateView(view);
-			}
+		this.app.workspace.iterateAllLeaves((leaf) => {
+			if (leaf.view instanceof FileView) this.decorateView(leaf.view);
 		});
 	}
 
-	private decorateView(view: MarkdownView) {
+	private decorateView(view: FileView) {
 		const file = view.file;
 		if (!file) return;
 
@@ -69,9 +66,9 @@ export default class EmojiPrefixPlugin extends Plugin {
 		}
 	}
 
-	private showEmojiMenu(view: MarkdownView, file: TFile, evt: MouseEvent) {
+	private showEmojiMenu(view: FileView, file: TFile, evt: MouseEvent) {
 		const menu = new Menu();
-		const vaultEmojis = collectVaultEmojis(this.app.vault.getMarkdownFiles(), {
+		const vaultEmojis = collectVaultEmojis(this.app.vault.getFiles(), {
 			exclude: file,
 			excludedFolders: this.settings.excludedFolders,
 		});
@@ -103,7 +100,7 @@ export default class EmojiPrefixPlugin extends Plugin {
 		menu.showAtMouseEvent(evt);
 	}
 
-	private async renameWithEmoji(view: MarkdownView, file: TFile, emoji: string | null) {
+	private async renameWithEmoji(view: FileView, file: TFile, emoji: string | null) {
 		const newBasename =
 			emoji === null
 				? removeLeadingEmoji(file.basename)
